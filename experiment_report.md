@@ -1,35 +1,30 @@
 # Experiment Report: Data Quality Impact on AI Agent
 
-**Student ID:** AI20K-XXXX
-**Name:** (Dien ten cua ban)
-**Date:** (Dien ngay thuc hien)
+**Student ID:** 2A202600912
+**Name:** Nguyễn Thế Giáp
+**Date:** 2026-06-10
 
 ---
 
-## 1. Ket qua thi nghiem
+## 1. Kết quả thí nghiệm
 
-Chay `agent_simulation.py` voi 2 bo du lieu va ghi lai ket qua:
+Chạy `agent_simulation.py` với 2 bộ dữ liệu và ghi lại kết quả:
 
 | Scenario | Agent Response | Accuracy (1-10) | Notes |
 |----------|----------------|-----------------|-------|
-| Clean Data (`processed_data.csv`) | (Ghi cau tra loi cua Agent) | | |
-| Garbage Data (`garbage_data.csv`) | (Ghi cau tra loi cua Agent) | | |
+| Clean Data (`processed_data.csv`) | Agent: Based on my data, the best choice is Laptop at $1200. | 9 | Dữ liệu sạch, giá trị electronics hợp lý, output có ý nghĩa với ngữ cảnh mua sắm. |
+| Garbage Data (`garbage_data.csv`) | Agent: Based on my data, the best choice is Nuclear Reactor at $999999. | 2 | Outlier rất lớn và dữ liệu sai chất lượng khiến agent chọn kết quả vô lý. |
 
 ---
 
-## 2. Phan tich & nhan xet
+## 2. Phân tích & nhận xét
 
-### Tai sao Agent tra loi sai khi dung Garbage Data?
+### Tại sao Agent trả lời sai khi dùng Garbage Data?
 
-(Viet nhan xet cua ban o day — it nhat 50 tu)
-
-(Hay phan tich cac van de nhu Duplicate IDs, wrong data types, outliers, null values
-va giai thich tai sao chung anh huong den ket qua cua Agent.)
+Agent trả lời sai vì logic của agent đang ưu tiên giá cao nhất trong nhóm electronics, nên outlier 999999 lập tức trở thành lựa chọn "tốt nhất" dù không phù hợp thực tế. Bộ dữ liệu garbage còn có duplicate ID, kiểu dữ liệu không nhất quán (ten dollars), và null values, làm giảm độ tin cậy của toàn bộ tập dữ liệu. Khi pipeline không có bước ràng buộc chất lượng dữ liệu trước suy luận, agent dễ bị "poison" bởi các bản ghi bất thường. Điều này cho thấy chất lượng data ảnh hưởng trực tiếp đến độ đúng của câu trả lời, kể cả khi prompt không đổi.
 
 ---
 
-## 3. Ket luan
+## 3. Kết luận
 
-**Quality Data > Quality Prompt?** (Dong y hay khong? Giai thich ngan gon.)
-
-(Viet ket luan cua ban o day)
+**Quality Data > Quality Prompt?** Đồng ý. Prompt tốt chỉ giúp diễn đạt yêu cầu rõ hơn, nhưng nếu dữ liệu đầu vào sai hoặc bẩn thì output vẫn sai. Chất lượng dữ liệu là điều kiện nền để AI trả lời đúng và ổn định.
