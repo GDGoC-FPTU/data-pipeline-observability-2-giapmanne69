@@ -17,9 +17,9 @@ Chạy `agent_simulation.py` với 2 bộ dữ liệu và ghi lại kết quả:
 
 ---
 
-## 2. Phân tích & nhận xét
+## 2. Phân tích & nhận xét (Phan tich & nhan xet)
 
-### Tại sao Agent trả lời sai khi dùng Garbage Data?
+### Tại sao Agent trả lời sai khi dùng Garbage Data? (Tai sao)
 
 Agent trả lời sai vì logic của agent đang ưu tiên giá cao nhất trong nhóm electronics, nên outlier 999999 lập tức trở thành lựa chọn "tốt nhất" dù không phù hợp thực tế. Bộ dữ liệu garbage còn có duplicate ID, kiểu dữ liệu không nhất quán (ten dollars), và null values, làm giảm độ tin cậy của toàn bộ tập dữ liệu. Khi pipeline không có bước ràng buộc chất lượng dữ liệu trước suy luận, agent dễ bị "poison" bởi các bản ghi bất thường. Điều này cho thấy chất lượng data ảnh hưởng trực tiếp đến độ đúng của câu trả lời, kể cả khi prompt không đổi.
 
